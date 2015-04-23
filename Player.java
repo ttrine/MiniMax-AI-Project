@@ -46,10 +46,116 @@ public class Player {
         
         return x + " " + y;
     }
+
+    public Move alphaBeta(Move move, int depth, int alp, int bet, boolean isMax) {
+    //if (depth == MAXDEPTH || noChildren(move)) {
+        //setScore(move);
+    //    return move;
+    //}
+
+    /*if (isMax) {
+        int v = Integer.MIN_VALUE;
+        for (Move child : getChildren(move)) {
+            v = max(v, this.alphaBeta(child, depth + 1, alp, bet, false));
+            alp = max(alp, v);
+            if (bet <= alp)
+                break;
+        }
+        return v;
+    }
+    else {
+        int v = inf;
+        for (Move child : getChildren(board)) {
+            v = min(v, alphaBeta(child, depth + 1, alp, bet, true));
+            bet = min(bet, v);
+            if (bet <= alp)
+                break;
+        }
+        return v;
+    } */
+        return null;
+    }
+
     
     /* Should return a list of all legal moves */
-    public ArrayList<int[][]> getLegal() {
-        return null;
+    public ArrayList<Move> getLegal(char[][] board, char setColor) {
+        ArrayList<Move> a = new ArrayList<Move>();
+
+        for (int r = 0; r < 8; r++) {
+            for (int c = 0; c < 8; c++) {
+
+                if (board[r][c] != ' ')
+                    break;
+
+                int row;
+                int col;
+
+                for (row = r + 1; row < 8 && board[row][c] == oppColor; row++) {}
+                if (row < 8 && board[row][c] == setColor){
+                    a.add(new Move(board, new int[] {r, c}));
+                    break;
+                }
+                
+                /* Check up */
+                for (row = r - 1; row >= 0 && board[row][c] == oppColor; row--) {}
+                if (row >= 0 && board[row][c] == setColor) {
+                    a.add(new Move(board, new int[] {r, c}));
+                    break;          
+                }
+
+                /* Check right */
+                for (col = c + 1; col < 8 && board[r][col] == oppColor; col++) {}
+                if (col < 8 && board[r][col] == setColor) {
+                    a.add(new Move(board, new int[] {r, c}));
+                    break;
+                }
+                
+                /* Check left */
+                for (col = c - 1; col >= 0 && board[r][col] == oppColor; col--) {}
+                if (col >= 0 && board[r][col] == setColor) {
+                    a.add(new Move(board, new int[] {r, c}));
+                    break;
+               }
+                
+                /* Check down-right */
+                for (row = r + 1, col = c + 1; 
+                     row < 8 && col < 8 && board[row][col] == oppColor; 
+                     row++, col++) {}
+                if (row < 8 && col < 8 && board[row][col] == setColor) {
+                    a.add(new Move(board, new int[] {r, c}));
+                    break;
+                }
+                
+                /* Check down-left */
+                for (row = r + 1, col = c - 1; 
+                     row < 8 && col >= 0 && board[row][col] == oppColor; 
+                     row++, col--) {}
+                if (row < 8 && col >= 0 && board[row][col] == setColor) {
+                    a.add(new Move(board, new int[] {r, c}));
+                    break;
+                }
+                
+                /* Check up-right */
+                for (row = r - 1, col = c + 1; 
+                     row >= 0 && col < 8 && board[row][col] == oppColor; 
+                     row--, col++) {}
+                if (row >= 0 && col < 8 && board[row][col] == setColor) {
+                    a.add(new Move(board, new int[] {r, c}));
+                    break;
+                }
+                
+                /* Check up-right */
+                for (row = r - 1, col = c - 1; 
+                     row >= 0 && col >= 0 && board[row][col] == oppColor; 
+                     row--, col--) {}
+                if (row >= 0 && col >= 0 && board[row][col] == setColor) {
+                    a.add(new Move(board, new int[] {r, c}));
+                    break;
+                }
+            }
+        }
+
+        return a;
     }
     
     /* Checks all 8 directions looking for another piece of the same color as the 
