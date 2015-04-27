@@ -1,21 +1,24 @@
 public class Move {
 	int score;
-	char[][] prevBoard;
-	char[][] newBoard;
-	String move; 
+	char[][] parentBoard;
+	char[][] nodeBoard;
+	int x, y;
 
-	public Move(char[][] currentBoard, int[] move){
-		//keep currentBoard
-		//use currentBoard and move to generate newBoard
-		//assign score by difference between current and new
+	public Move(char[][] parentBoard, int x, int y){
+		this.parentBoard = parentBoard;
+		this.x=x; this.y=y;
+		if (x >= 0 && y >= 0) //basically, if not root node
+			nodeBoard = update();
+		score = score(parentBoard, nodeBoard);
 	}
 
-	public void update() {
-		//update board representation
-		//assign score
+	public char[][] update() {
+		//update board using parentboard and x, y coords
+		return null;
 	}
 
-	public void score(){
+	public int score(char[][] parentBoard, char[][] nodeBoard){
 		//calculate score
+		return 0;
 	}
 }

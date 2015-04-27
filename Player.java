@@ -36,15 +36,11 @@ public class Player {
     }
     
     /* Should use minimax + heuristics to choose a move and return as a string. */
-    public String makeMove() {
-        //Scanner s = new Scanner(System.in);
-        int x = 4;
-        int y = 5;
-        //x = s.nextInt();
-        //y = s.nextInt();
-        update(true, x, y);
-        
-        return x + " " + y;
+    public String makeMove() {        
+        Move root = new Move(this.board, null);
+        Move nextMove = alphaBeta(root,0, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
+        update(true, nextMove.x, nextMove.y);
+        return nextMove.x + " " + nextMove.y;
     }
 
     public Move alphaBeta(Move move, int depth, int alp, int bet, boolean isMax) {
