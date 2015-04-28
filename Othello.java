@@ -23,7 +23,7 @@ public class Othello {
         depthLimit = scan.nextInt();
         timeLimit1 = scan.nextInt();
         timeLimit2 = scan.nextInt();
-        
+        System.err.println("here");
         player = new Player(playerString, depthLimit, timeLimit1, timeLimit2);
         
         if (DEBUG)
