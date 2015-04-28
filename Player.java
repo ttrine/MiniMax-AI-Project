@@ -13,7 +13,7 @@ public class Player {
 
     public Player(char color, int dLim, int tLim1, int tLim2) {
         this.color = color;
-        this.depthLimit = dLim;
+        this.depthLimit = (dLim == 0) ? 8 : dLim; // Go to depth of 8 by default
         this.timeLimit1 = tLim1;
         this.timeLimit2 = tLim2;
         
