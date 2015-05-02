@@ -1,0 +1,12 @@
+Authors: Wolf Honore, Tyler Trine, Anthony Margetic
+CSC 242 Othello Project Spring 2015
+
+Contents:
+    Othello.java - The main class. Handles interactions with the tournament
+                   interface.
+    Player.java - Responsible for keeping track of the board state and making
+                  a move using the minimax algorithm with alpha-beta pruning.
+    Move.java - Represents a possible move and contains methods to calculate
+                its score.
+    play - Bash script for use by the tournament interface.
+    Writeup.pdf - Describes the design choices made in creating the AI.
